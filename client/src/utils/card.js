@@ -24,33 +24,34 @@ class Card extends Component {
               }}
           />
           <div className="action_container">
+            
             <div className="tags">
               <div className="brand">{props.brand.name}</div>
               <div className="name">{props.name}</div>
               <div className="price">${props.price}</div>
             </div>
-          </div>
 
-          {props.grid &&
-          <div className="description">
-            {props.description}
-          </div>}
-
-          <div className="actions">
-            <div className="button_wrapp">
-              <MyButton
-                type="default"
-                altClass="card_link"
-                title="View product"
-                linkTo={`/product_detail/${props._id}`}
-                addStyles={{margin:'10px 0 0 0'}}
-              />
-            </div>
-            <div className="button_wrapp">
-              <MyButton
-                type="bag_link"
-                runAction={() => console.log('Add to cart')}
-              />
+            {props.grid &&
+            <div className="description">
+              <p>{props.description}</p>
+            </div>}
+  
+            <div className="actions">
+              <div className="button_wrapp">
+                <MyButton
+                  type="default"
+                  altClass="card_link"
+                  title="View product"
+                  linkTo={`/product_detail/${props._id}`}
+                  addStyles={{margin:'10px 0 0 0'}}
+                />
+              </div>
+              <div className="button_wrapp">
+                <MyButton
+                  type="bag_link"
+                  runAction={() => console.log('Add to cart')}
+                />
+              </div>
             </div>
           </div>
         </div>

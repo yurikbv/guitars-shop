@@ -21,6 +21,11 @@ const FormField = ({formdata, id, change}) => {
       case 'input':
         formTemplate = (
            <div className="formBlock">
+             {formdata.showLabel &&
+              <div className="label_inputs">
+                {formdata.config.label}
+              </div>
+             }
              <input
                  {...formdata.config}
                  value={formdata.value}
@@ -31,6 +36,48 @@ const FormField = ({formdata, id, change}) => {
            </div>
         );
       break;
+      case 'select':
+        formTemplate = (
+            formTemplate =
+                <div className="formBlock">
+                  {formdata.showLabel &&
+                  <div className="label_inputs">
+                    {formdata.config.label}
+                  </div>
+                  }
+                  <select
+                      value={formdata.value}
+                      onBlur={event => change({event, id, blur: true})}
+                      onChange={event => change({event,id})}
+                  >
+                    <option value="">Select one</option>
+                    {formdata.config.options.map(item => (
+                        <option key={item.key}
+                            value={item.key}
+                        >{item.value}</option>
+                    ))}
+                  </select>
+                  {showError()}
+                </div>
+        );
+        break;
+      case 'textarea':
+        formTemplate =
+            <div className="formBlock">
+              {formdata.showLabel &&
+              <div className="label_inputs">
+                {formdata.config.label}
+              </div>
+              }
+              <textarea
+                  {...formdata.config}
+                  value={formdata.value}
+                  onBlur={event => change({event, id, blur: true})}
+                  onChange={event => change({event,id})}
+              />
+              {showError()}
+            </div>;
+        break;
       default:
         formTemplate = '';
     }

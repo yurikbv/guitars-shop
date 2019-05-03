@@ -29,6 +29,28 @@ export default function (state = {},action) {
         ...state,
         woods: action.payload
       };
+    case actionTypes.ADD_PRODUCT:
+      return {
+        ...state,
+        addProduct: action.payload
+      };
+    case actionTypes.CLEAR_PRODUCT:
+      return {
+        ...state,
+        addProduct: action.payload
+      };
+    case actionTypes.ADD_BRAND:
+      return {
+        ...state,
+        addBrand: action.payload.success,
+        brands: action.payload.brands
+      };
+    case actionTypes.ADD_WOOD:
+      return {
+        ...state,
+        addWood: action.payload.success,
+        woods: action.payload.woods
+      };
     default:
       return state;
   }

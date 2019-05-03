@@ -21,6 +21,7 @@ class CollapseRadio extends Component {
   };
 
   componentDidMount() {
+
     if(this.props.initState){
       this.setState({open: this.props.initState})
     }
