@@ -51,6 +51,16 @@ export default function (state = {},action) {
         addWood: action.payload.success,
         woods: action.payload.woods
       };
+    case actionTypes.GET_PRODUCT_DETAIL:
+      return {
+        ...state,
+        productDetail: action.payload
+      };
+    case actionTypes.CLEAR_PRODUCT_DETAIL:
+      return {
+        ...state,
+        productDetail: action.payload
+      };
     default:
       return state;
   }

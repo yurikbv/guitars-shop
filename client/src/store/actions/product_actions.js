@@ -64,6 +64,22 @@ export function clearProduct() {
   }
 }
 
+export function getProductDetail(id) {
+  const request = axios.get(`${PRODUCT_SERVER}/articles_by_id?id=${id}&type=single`)
+      .then(response =>response.data[0]);
+  return {
+    type: actionTypes.GET_PRODUCT_DETAIL,
+    payload: request
+  }
+}
+
+export function clearProductDetail() {
+  return {
+    type: actionTypes.CLEAR_PRODUCT_DETAIL,
+    payload: ''
+  }
+}
+
 ///////////////////////////////////
 ////////   CATEGORIES   ///////////
 ///////////////////////////////////

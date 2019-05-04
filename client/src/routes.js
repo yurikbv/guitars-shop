@@ -12,6 +12,7 @@ import UserDashboard from "./components/User";
 import Shop from "./components/Shop";
 import AddProduct from "./components/User/Admin/add_product";
 import ManageCategories from "./components/User/Admin/manage_categories";
+import ProductPage from "./components/Product";
 
 
 const Routes = () => {
@@ -25,6 +26,7 @@ const Routes = () => {
 
           <Route path="/register" exact component={Auth(Register, false)}/>
           <Route path="/register_login" exact component={Auth(RegisterLogin, false)}/>
+          <Route path="/product_detail/:id" exact component={Auth(ProductPage, null)}/>
           <Route path="/shop" exact component={Auth(Shop, null)}/>
           <Route path="/" exact component={Auth(Home, null)}/>
         </Switch>

@@ -23,6 +23,16 @@ const MyButton = (props) => {
               <FontAwesomeIcon icon={faCartArrowDown} />
             </div>;
         break;
+      case 'add_to_cart_link':
+        template =
+            <div
+                className="add_to_cart_link"
+                onClick={props.runAction}
+            >
+              <FontAwesomeIcon icon={faCartArrowDown} />
+              Add to cart
+            </div>;
+        break;
       default:
         template = '';
     }
