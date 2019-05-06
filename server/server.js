@@ -240,7 +240,6 @@ app.get('/api/users/logout', auth, (req, res) => {
 
 app.post('/api/users/uploadimage',auth, admin, formidable(), (req,res) => {
   cloudinary.uploader.upload(req.files.file.path, (result) => {
-    console.log(result);
     res.status(200).send({
       public_id: result.public_id,
       url: result.url
@@ -258,6 +257,68 @@ app.get('/api/users/removeimage',auth, admin,(req, res) => {
     if (error) return res.status(400).json({success: false,error});
     res.status(200).send('ok');
   })
+});
+
+app.post('/api/users/addToCart', auth, (req, res) => {
+  User.findOne({_id: req.user._id}, (err, doc) => {
+    let duplicate = false;
+
+    doc.cart.forEach(item => {
+      if(String(item.id) === String(req.query.productId)){
+        duplicate = true;
+      }
+    });
+
+    if (duplicate) {
+      User.findOneAndUpdate(
+          {_id: req.user._id, "cart.id": mongoose.Types.ObjectId(req.query.productId)},
+          { $inc: {"cart.$.quantity": 1}},
+          { new: true}, (err, doc) => {
+            if(err) return res.json({success: false, err});
+            res.status(200).json(doc.cart);
+          }
+          )
+    } else {
+      User.findOneAndUpdate(
+          {_id: req.user._id},
+          {$push: {
+            cart: {
+              id: mongoose.Types.ObjectId(req.query.productId),
+              quantity: 1,
+              date: Date.now()
+            }}},
+          {new: true}, //return updated document with cart push
+          (err, doc) => {
+            if(err) return res.json({success: false, err});
+            res.status(200).json(doc.cart);
+          }
+          )
+    }
+  })
+});
+
+app.get('/api/users/removeFromCart',auth, (req, res) => {
+  User.findOneAndUpdate(
+      {_id: req.user._id},
+      {$pull: {
+        "cart": {"id": mongoose.Types.ObjectId(req.query._id)}}
+        },
+      {new: true}, (err, doc) => {
+        let cart = doc.cart;
+        let array = cart.map(item => {
+          return mongoose.Types.ObjectId(item.id);
+        });
+        Product.find({_id:{$in: array}})
+            .populate('brand')
+            .populate('wood')
+            .exec((err,cartDetail) => {
+              return res.status(200).json({
+                cartDetail,
+                cart
+              })
+            })
+        }
+      )
 });
 
 const port = process.env.PORT || 3002;

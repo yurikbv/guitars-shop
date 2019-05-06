@@ -4,6 +4,7 @@ import {getProductDetail, clearProductDetail} from "../../store/actions/product_
 import PageTop from "../../utils/page_top";
 import ProdNfo from "./prodNFO";
 import ProdImg from "./prodIMG";
+import {addToCart} from "../../store/actions/user_actions";
 
 class ProductPage extends Component {
 
@@ -21,7 +22,9 @@ class ProductPage extends Component {
     this.props.dispatch(clearProductDetail());
   }
 
-  addToCarthandler = (id) => {};
+  addToCartHandler = (id) => {
+    this.props.dispatch(addToCart(id));
+  };
 
   render() {
 
@@ -43,7 +46,7 @@ class ProductPage extends Component {
                 <div className="right">
                   <ProdNfo
                     detail={productDetail}
-                    addToCart={this.addToCarthandler}
+                    addToCart={this.addToCartHandler}
                   />
                 </div>
               </div>

@@ -10,6 +10,21 @@ export default function (state={}, action) {
       return {...state, userData: action.payload};
     case actionTypes.LOGOUT_USER:
       return {...state};
+    case actionTypes.ADD_TO_CART_USER:
+      return {...state, userData: {
+          ...state.userData,
+          cart: action.payload
+        }};
+    case actionTypes.GET_CART_ITEMS:
+      return {...state, cartDetail: action.payload};
+    case actionTypes.REMOVE_CART_ITEM:
+      return  {...state,
+        cartDetail: action.payload.cartDetail,
+        userData: {
+          ...state.userData,
+          cart: action.payload.cart
+        }
+      };
     default:
       return state;
   }
