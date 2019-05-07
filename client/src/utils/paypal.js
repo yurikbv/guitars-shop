@@ -3,7 +3,6 @@ import PaypalExpressBtn from 'react-paypal-express-checkout';
 
 class Paypal extends Component {
 
-
   render() {
 
     const onSuccess = (payment) => {
@@ -23,7 +22,7 @@ class Paypal extends Component {
     let total = this.props.toPay;
 
     const client = {
-      sandbox: 'AX5T-EKZ8vp6xAQv1MNQwsn6H_MB5_iVxoxbI1o1yJBbGSMm_nQMmC9BxhO-04u-IPqI6elO-YtVMjKh',
+      sandbox: 'AfbWzEYLcabqwh84YPMJ1Dxjx0GiqlIitCS0mRGUj8TxlE2jejO7ovBHxwiHgjaEIWs8NQDXDpgVi2aX',
       production: ''
     };
 

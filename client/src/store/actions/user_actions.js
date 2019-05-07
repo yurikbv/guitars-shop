@@ -87,3 +87,29 @@ export function removeCartItem(id) {
   }
 }
 
+export function onSuccessBuy(data) {
+
+  const request = axios.post(`${USER_SERVER}/successBuy`,data)
+      .then(response => response.data);
+  return {
+    type: actionTypes.ON_SUCCESS_BUY_USER,
+    payload: request
+  }
+}
+
+export function updateUserProfile(data) {
+  const request = axios.post(`${USER_SERVER}/update_profile`,data)
+      .then(response => response.data);
+  return {
+    type: actionTypes.UPDATE_USER_PROFILE,
+    payload: request
+  }
+}
+
+export function clearUpdateUser() {
+  return {
+    type: actionTypes.CLEAR_UPDATE_USER,
+    payload: ''
+  }
+}
+
