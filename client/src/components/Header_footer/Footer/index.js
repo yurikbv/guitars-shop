@@ -8,7 +8,7 @@ import faEnvelope from '@fortawesome/fontawesome-free-solid/faEnvelope';
 
 const Footer = ({data}) => {
   return (
-      data ?
+      data.success ?
       <footer className="bck_b_dark">
         <div className="container">
           <div className="logo">Waves</div>
@@ -24,7 +24,7 @@ const Footer = ({data}) => {
                   />
                   <div className="nfo">
                     <div>Address</div>
-                    <div>{data[0].address}</div>
+                    <div>{data.siteData[0].address}</div>
                   </div>
                 </div>
 
@@ -35,7 +35,7 @@ const Footer = ({data}) => {
                   />
                   <div className="nfo">
                     <div>Phone</div>
-                    <div>{data[0].phone}</div>
+                    <div>{data.siteData[0].phone}</div>
                   </div>
                 </div>
 
@@ -46,7 +46,7 @@ const Footer = ({data}) => {
                   />
                   <div className="nfo">
                     <div>Working hours</div>
-                    <div>{data[0].hours}</div>
+                    <div>{data.siteData[0].hours}</div>
                   </div>
                 </div>
 
@@ -57,7 +57,7 @@ const Footer = ({data}) => {
                   />
                   <div className="nfo">
                     <div>Email</div>
-                    <div>{data[0].email}</div>
+                    <div>{data.siteData[0].email}</div>
                   </div>
                 </div>
               </div>

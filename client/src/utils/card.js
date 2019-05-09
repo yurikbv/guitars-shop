@@ -14,6 +14,14 @@ class Card extends Component {
     }
   };
 
+  shortDescription = (description) => {
+
+    let shortDesc = description.length > 280 ? description.substr(0,280) + '...' : description;
+    if(this.props.grid === 'grid_bars') {
+      return shortDesc;
+    } else return description
+  };
+
   render() {
 
     const props = this.props;
@@ -36,7 +44,7 @@ class Card extends Component {
 
             {props.grid &&
             <div className="description">
-              <p>{props.description}</p>
+              <p>{this.shortDescription(props.description)}</p>
             </div>}
   
             <div className="actions">

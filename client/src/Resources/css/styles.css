@@ -893,4 +893,5 @@ footer .business_nfo .nfo {
     background-size: contain !important;
     background-position: center center !important;
     border: 1px solid #eaeaea;
+    cursor: pointer;
 }

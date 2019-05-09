@@ -101,6 +101,11 @@ class Login extends Component {
               </div>
             }
             <button onClick={this.submitForm}>Log in</button>
+
+            <button
+                onClick={() => this.props.history.push('/reset_user')}
+                style={{marginLeft: '10px'}}
+            >Forgot password?</button>
           </form>
         </div>
     );
